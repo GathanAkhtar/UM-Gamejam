@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6mjpcewrx03t"
-path="res://.godot/imported/ALL IN ONE PHASE-Sheet.png-ce70e960b390e79ee27347e89dc89f88.ctex"
+uid="uid://drd3ib2nuxq46"
+path="res://.godot/imported/ALL IN ONE REDESIGN.png-5cba066ead3165864e829cb13dc78229.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/ALL IN ONE PHASE-Sheet.png"
-dest_files=["res://.godot/imported/ALL IN ONE PHASE-Sheet.png-ce70e960b390e79ee27347e89dc89f88.ctex"]
+source_file="res://Assets/Sprites/ALL IN ONE REDESIGN.png"
+dest_files=["res://.godot/imported/ALL IN ONE REDESIGN.png-5cba066ead3165864e829cb13dc78229.ctex"]
 
 [params]
 

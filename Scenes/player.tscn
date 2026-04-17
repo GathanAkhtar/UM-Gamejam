@@ -1,60 +1,82 @@
 [gd_scene format=3 uid="uid://r1ovhlqv6wsn"]
 
 [ext_resource type="Script" uid="uid://c7ukou5uutlvc" path="res://Scripts/player.gd" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://b6mjpcewrx03t" path="res://Assets/Sprites/ALL IN ONE PHASE-Sheet.png" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://drd3ib2nuxq46" path="res://Assets/Sprites/ALL IN ONE REDESIGN.png" id="2_cvnsp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tx1dd"]
+atlas = ExtResource("2_cvnsp")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gymyn"]
+atlas = ExtResource("2_cvnsp")
+region = Rect2(288, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
-atlas = ExtResource("1_v0iea")
+atlas = ExtResource("2_cvnsp")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_v0iea"]
-atlas = ExtResource("1_v0iea")
-region = Rect2(32, 0, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_6t5aa"]
-atlas = ExtResource("1_v0iea")
-region = Rect2(64, 0, 32, 32)
+atlas = ExtResource("2_cvnsp")
+region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vgqql"]
-atlas = ExtResource("1_v0iea")
-region = Rect2(96, 0, 32, 32)
+atlas = ExtResource("2_cvnsp")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkybt"]
+atlas = ExtResource("2_cvnsp")
+region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x3wgy"]
-atlas = ExtResource("1_v0iea")
-region = Rect2(128, 0, 32, 32)
+atlas = ExtResource("2_cvnsp")
+region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3smsa"]
-atlas = ExtResource("1_v0iea")
+atlas = ExtResource("2_cvnsp")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8erm5"]
+atlas = ExtResource("2_cvnsp")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1ek2"]
+atlas = ExtResource("2_cvnsp")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8erm5"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cvnsp")
+"texture": SubResource("AtlasTexture_tx1dd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gymyn")
 }],
 "loop": true,
-"name": &"Idle Left",
+"name": &"Climbing",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_v0iea")
-}],
-"loop": true,
-"name": &"Idle Right",
-"speed": 5.0
+"texture": SubResource("AtlasTexture_cvnsp")
 }, {
-"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6t5aa")
+}],
+"loop": false,
+"name": &"Idle Left",
+"speed": 4.0
 }, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vgqql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkybt")
 }],
-"loop": true,
-"name": &"Run Left",
-"speed": 5.0
+"loop": false,
+"name": &"Idle Right",
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -64,12 +86,26 @@ animations = [{
 "texture": SubResource("AtlasTexture_3smsa")
 }],
 "loop": true,
+"name": &"Run Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8erm5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1ek2")
+}],
+"loop": true,
 "name": &"Run Right",
 "speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cvnsp"]
-radius = 9.055386
+radius = 11.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pu2lt"]
+radius = 11.0
 
 [node name="Player" type="CharacterBody2D" unique_id=69424321]
 collision_layer = 2
@@ -78,8 +114,16 @@ script = ExtResource("1_cvnsp")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1884277737]
 position = Vector2(0, -18)
 sprite_frames = SubResource("SpriteFrames_8erm5")
-animation = &"Idle Left"
+animation = &"Climbing"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=454161090]
-position = Vector2(0, -11)
+position = Vector2(0, -12)
 shape = SubResource("CircleShape2D_cvnsp")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=269851827]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1462358884]
+position = Vector2(0, -12)
+shape = SubResource("CircleShape2D_pu2lt")
