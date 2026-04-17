@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cqey1kx4u7yqn"]
+
+[ext_resource type="Texture2D" uid="uid://o83n4wgx4iv3" path="res://Assets/Sprites/Land and Spikes.png" id="1_1rc8e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n5262"]
+size = Vector2(88, 24)
+
+[node name="Platform" type="AnimatableBody2D" unique_id=1485597728]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=703403727]
+texture = ExtResource("1_1rc8e")
+region_enabled = true
+region_rect = Rect2(4, 5, 88, 24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1626093308]
+shape = SubResource("RectangleShape2D_n5262")
+one_way_collision = true

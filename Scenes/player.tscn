@@ -112,6 +112,7 @@ collision_layer = 2
 script = ExtResource("1_cvnsp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1884277737]
+z_index = 5
 position = Vector2(0, -18)
 sprite_frames = SubResource("SpriteFrames_8erm5")
 animation = &"Climbing"

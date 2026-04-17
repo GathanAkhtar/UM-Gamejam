@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dqojoel353ci"]
+
+[ext_resource type="Script" uid="uid://dey3hpb2unfvk" path="res://Scripts/water_bottle.gd" id="1_3s3v6"]
+[ext_resource type="Texture2D" uid="uid://uevnccpnossd" path="res://Assets/Sprites/FreePixelSurvivalItemsPack.png" id="2_pvo04"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akjkb"]
+atlas = ExtResource("2_pvo04")
+region = Rect2(128, 288, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_11h0i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akjkb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xdd7j"]
+radius = 6.0
+height = 26.0
+
+[node name="WaterBottle" type="Area2D" unique_id=1487776920]
+collision_mask = 2
+script = ExtResource("1_3s3v6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1526013676]
+sprite_frames = SubResource("SpriteFrames_11h0i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1576180343]
+shape = SubResource("CapsuleShape2D_xdd7j")
