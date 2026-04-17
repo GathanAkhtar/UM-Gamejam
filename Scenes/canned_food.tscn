@@ -7,10 +7,6 @@
 atlas = ExtResource("2_nqr54")
 region = Rect2(160, 288, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_giaxh"]
-atlas = ExtResource("2_nqr54")
-region = Rect2(192, 288, 32, 32)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_likb6"]
 animations = [{
 "frames": [{
@@ -19,14 +15,6 @@ animations = [{
 }],
 "loop": true,
 "name": &"Canned Food",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_giaxh")
-}],
-"loop": true,
-"name": &"Soda Can",
 "speed": 5.0
 }]
 
