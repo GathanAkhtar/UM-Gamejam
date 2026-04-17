@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://61ewx2a8nw0"]
+
+[ext_resource type="Texture2D" uid="uid://uevnccpnossd" path="res://Assets/Sprites/FreePixelSurvivalItemsPack.png" id="1_3vr1m"]
+[ext_resource type="Script" uid="uid://t740ir6anqs0" path="res://Scripts/soda_can.gd" id="1_giaxh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_giaxh"]
+atlas = ExtResource("1_3vr1m")
+region = Rect2(192, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mqe0"]
+atlas = ExtResource("1_3vr1m")
+region = Rect2(160, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2yji"]
+atlas = ExtResource("1_3vr1m")
+region = Rect2(128, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mf8dm"]
+atlas = ExtResource("1_3vr1m")
+region = Rect2(96, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsik6"]
+atlas = ExtResource("1_3vr1m")
+region = Rect2(32, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_heg6c"]
+atlas = ExtResource("1_3vr1m")
+region = Rect2(64, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7cpt"]
+atlas = ExtResource("1_3vr1m")
+region = Rect2(32, 224, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_likb6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_giaxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mqe0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2yji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mf8dm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dsik6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_heg6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7cpt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qq7k1"]
+radius = 9.0
+
+[node name="Soda Can" type="Area2D" unique_id=2142732381]
+collision_mask = 2
+script = ExtResource("1_giaxh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2104312369]
+sprite_frames = SubResource("SpriteFrames_likb6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=637397455]
+shape = SubResource("CircleShape2D_qq7k1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
