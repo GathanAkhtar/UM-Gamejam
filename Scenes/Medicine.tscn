@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cyo0hvp4pwxq7" path="res://can_food.gd" id="1_qvm25"]
 [ext_resource type="Texture2D" uid="uid://uevnccpnossd" path="res://Assets/Sprites/FreePixelSurvivalItemsPack.png" id="2_1rw7i"]
+[ext_resource type="AudioStream" uid="uid://ckylrfm3sdmew" path="res://Assets/Music & Sound Effect/Pickup.mp3" id="3_1rw7i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qvm25"]
 atlas = ExtResource("2_1rw7i")
@@ -32,5 +33,9 @@ animation = &"Medicine"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=48170027]
 position = Vector2(1, 0)
 shape = SubResource("CapsuleShape2D_5bmmp")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1886135033]
+stream = ExtResource("3_1rw7i")
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

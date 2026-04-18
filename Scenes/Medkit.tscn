@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://t740ir6anqs0" path="res://Scripts/soda_can.gd" id="1_1kfui"]
 [ext_resource type="Texture2D" uid="uid://uevnccpnossd" path="res://Assets/Sprites/FreePixelSurvivalItemsPack.png" id="2_ih8jt"]
+[ext_resource type="AudioStream" uid="uid://ckylrfm3sdmew" path="res://Assets/Music & Sound Effect/Pickup.mp3" id="3_ih8jt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1kfui"]
 atlas = ExtResource("2_ih8jt")
@@ -31,5 +32,9 @@ animation = &"Medkit"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=637397455]
 shape = SubResource("CircleShape2D_qq7k1")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2005810127]
+stream = ExtResource("3_ih8jt")
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

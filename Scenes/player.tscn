@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c7ukou5uutlvc" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://drd3ib2nuxq46" path="res://Assets/Sprites/ALL IN ONE REDESIGN.png" id="2_cvnsp"]
+[ext_resource type="AudioStream" uid="uid://nfwf2gqf4j01" path="res://Assets/Music & Sound Effect/Death.mp3" id="3_6t5aa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tx1dd"]
 atlas = ExtResource("2_cvnsp")
@@ -144,7 +145,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Death From Insanity",
-"speed": 4.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -296,3 +297,7 @@ frame_progress = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=454161090]
 position = Vector2(0, -11)
 shape = SubResource("CircleShape2D_cvnsp")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=1929324210]
+stream = ExtResource("3_6t5aa")
+bus = &"SFX"

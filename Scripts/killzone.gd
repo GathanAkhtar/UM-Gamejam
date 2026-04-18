@@ -6,9 +6,10 @@ extends Area2D
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		print("You died to enemy")
-		Engine.time_scale = 0.3
+		Engine.time_scale = 0.2
 		body.get_node("AnimatedSprite2D").play("Death From Insanity")
 		body.is_dead = true
+		body.get_node("DeathSound").play()
 			
 		timer.start()
 

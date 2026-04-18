@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cyo0hvp4pwxq7" path="res://can_food.gd" id="1_yuu5d"]
 [ext_resource type="Texture2D" uid="uid://uevnccpnossd" path="res://Assets/Sprites/FreePixelSurvivalItemsPack.png" id="2_u0a47"]
+[ext_resource type="AudioStream" uid="uid://ckylrfm3sdmew" path="res://Assets/Music & Sound Effect/Pickup.mp3" id="3_u0a47"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gc5rs"]
 atlas = ExtResource("2_u0a47")
@@ -31,5 +32,9 @@ animation = &"Wood"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=48170027]
 shape = SubResource("CapsuleShape2D_5bmmp")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=265013913]
+stream = ExtResource("3_u0a47")
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

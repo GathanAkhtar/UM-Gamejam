@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dfas70pk8xeiq"]
+
+[ext_resource type="AudioStream" uid="uid://dpwrn2l3de35m" path="res://Assets/Music & Sound Effect/gamejam.mp3" id="1_fbmny"]
+
+[node name="Music" type="AudioStreamPlayer2D" unique_id=2004403220]
+stream = ExtResource("1_fbmny")
+autoplay = true
+bus = &"Music"

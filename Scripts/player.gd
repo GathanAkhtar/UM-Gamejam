@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
 # --- Variables ---
+@onready var death_sound = $DeathSound
 @onready var game_manager = %GameManager
 var max_sanity = 100.0
 var current_sanity = 100.0
-var drain_rate = 0.90
+var drain_rate = 0.70
 var is_outside = true
 var is_dead = false
 var is_on_ladder = false 
@@ -41,8 +42,9 @@ func check_sanity_state() -> void:
 	# 1. Death Logic
 	if current_sanity <= 0:
 		is_dead = true
+		death_sound.play()
 		anim.play("Death From Insanity")
-		await get_tree().create_timer(2.0).timeout
+		await get_tree().create_timer(5.0).timeout
 		get_tree().reload_current_scene()
 		return
 
