@@ -144,7 +144,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Death From Insanity",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -294,8 +294,7 @@ z_index = 5
 position = Vector2(0, -18)
 sprite_frames = SubResource("SpriteFrames_8erm5")
 animation = &"Death From Insanity"
-frame = 2
-frame_progress = 0.014060749
+frame_progress = 0.19795765
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=454161090]
 position = Vector2(0, -12)
