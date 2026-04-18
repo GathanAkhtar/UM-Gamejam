@@ -1,5 +1,15 @@
 extends CharacterBody2D
 
+# --- Sanity Variables ---
+var max_sanity = 100.0
+var current_sanity = 100.0
+var drain_rate = 5.0 # How much sanity is lost per second
+var is_outside = true # We will use this to stop the drain when inside
+
+@export var sanity_bar: TextureProgressBar
+var sanity_prefix = "" # This will hold "Tier 1 Insanity ", etc.
+var is_dead = false    # We use this to stop the player from moving when they die
+
 const SPEED = 150
 const JUMP_VELOCITY = -350.0
 
