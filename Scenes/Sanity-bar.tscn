@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://byi1dvbvwt8be" path="res://Assets/Sprites/Splash + Bar.png" id="1_wkho5"]
 [ext_resource type="Texture2D" uid="uid://bud8mvmo67o8g" path="res://Assets/Sprites/InsideBar.png" id="2_onmsm"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k1yo4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkho5"]
 atlas = ExtResource("1_wkho5")
-region = Rect2(1, 64, 127, 30)
+region = Rect2(0, 65, 126, 27)
 
 [node name="Node2D" type="Node2D" unique_id=694192114]
 
@@ -15,6 +15,6 @@ offset_right = 193.0
 offset_bottom = 96.0
 step = 5.0
 value = 50.0
-texture_under = SubResource("AtlasTexture_k1yo4")
+texture_over = SubResource("AtlasTexture_wkho5")
 texture_progress = ExtResource("2_onmsm")
-texture_progress_offset = Vector2(-33, -36)
+texture_progress_offset = Vector2(-32, -37)

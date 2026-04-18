@@ -176,9 +176,13 @@ texture = ExtResource("3_1l0tm")
 4:0/0 = 0
 5:0/0 = 0
 6:0/0 = 0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 7:0/0 = 0
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:0/0 = 0
+8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 9:0/0 = 0
+9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:1/0 = 0
 1:1/0 = 0
 2:1/0 = 0
@@ -186,9 +190,13 @@ texture = ExtResource("3_1l0tm")
 4:1/0 = 0
 5:1/0 = 0
 6:1/0 = 0
+6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 7:1/0 = 0
+7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:1/0 = 0
+8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 9:1/0 = 0
+9:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ldgsr"]
 texture = ExtResource("4_v158k")
@@ -291,6 +299,9 @@ texture = ExtResource("3_wrm1d")
 
 [sub_resource type="TileSet" id="TileSet_i6g32"]
 sources/1 = SubResource("TileSetAtlasSource_wowpa")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1phco"]
+size = Vector2(11, 70)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_i6g32"]
 distance = -185.0
@@ -420,6 +431,12 @@ layer_2/name = "Background"
 tile_map_data = PackedByteArray(0, 0, 251, 255, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 251, 255, 1, 0, 1, 0, 0, 0, 3, 0, 0, 0, 251, 255, 2, 0, 1, 0, 0, 0, 4, 0, 0, 0, 251, 255, 3, 0, 1, 0, 0, 0, 5, 0, 0, 0, 251, 255, 4, 0, 1, 0, 0, 0, 6, 0, 0, 0)
 tile_set = SubResource("TileSet_i6g32")
 
+[node name="Climbzone" type="Area2D" parent="TileMap/Ladder" unique_id=168993764]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/Ladder/Climbzone" unique_id=77582310]
+position = Vector2(-72.5, 40)
+shape = SubResource("RectangleShape2D_1phco")
+
 [node name="Killzone" parent="." unique_id=2138395989 instance=ExtResource("5_wowpa")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=271038759]
@@ -497,6 +514,9 @@ libraries/ = SubResource("AnimationLibrary_rku1e")
 autoplay = &"Platform4"
 
 [node name="Soda Can" parent="." unique_id=1369451987 instance=ExtResource("13_rfjv2")]
-position = Vector2(2070, -164)
+position = Vector2(2070, -176)
+
+[connection signal="body_entered" from="TileMap/Ladder/Climbzone" to="Player" method="_on_climbzone_body_entered"]
+[connection signal="body_exited" from="TileMap/Ladder/Climbzone" to="Player" method="_on_climbzone_body_exited"]
 
 [editable path="GameManager/UI/SanityBar"]

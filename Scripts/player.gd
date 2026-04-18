@@ -114,3 +114,11 @@ func _physics_process(delta: float) -> void:
 		pass
 
 	move_and_slide()
+
+
+func _on_climbzone_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.
+
+
+func _on_climbzone_body_exited(body: Node2D) -> void:
+	pass # Replace with function body.
