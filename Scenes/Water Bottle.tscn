@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://tko67hxhr5b1"]
 
-[ext_resource type="Script" uid="uid://cyo0hvp4pwxq7" path="res://can_food.gd" id="1_gxb1y"]
-[ext_resource type="Texture2D" uid="uid://uevnccpnossd" path="res://Assets/Sprites/FreePixelSurvivalItemsPack.png" id="2_0dy5s"]
+[ext_resource type="Script" uid="uid://cyo0hvp4pwxq7" path="res://can_food.gd" id="1_qt4ne"]
+[ext_resource type="Texture2D" uid="uid://uevnccpnossd" path="res://Assets/Sprites/FreePixelSurvivalItemsPack.png" id="2_juot4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gxb1y"]
-atlas = ExtResource("2_0dy5s")
+atlas = ExtResource("2_juot4")
 region = Rect2(128, 288, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ki6qw"]
@@ -23,7 +23,7 @@ radius = 7.0
 height = 24.0
 
 [node name="Water Bottle" type="Area2D" unique_id=179562540]
-script = ExtResource("1_gxb1y")
+script = ExtResource("1_qt4ne")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1302862591]
 sprite_frames = SubResource("SpriteFrames_ki6qw")

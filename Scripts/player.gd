@@ -1,12 +1,14 @@
 extends CharacterBody2D
 
 # --- Variables ---
+@onready var game_manager = %GameManager
 var max_sanity = 100.0
 var current_sanity = 100.0
-var drain_rate = 5.0
+var drain_rate = 0.90
 var is_outside = true
 var is_dead = false
 var is_on_ladder = false 
+var restore_rate = 3.0  # Adjust this to control how fast sanity restores
 
 @export var sanity_bar: TextureProgressBar
 var sanity_prefix = "" 
@@ -19,23 +21,20 @@ var last_direction = "Right"
 
 # --- Sanity Drain Loop ---
 func _process(delta: float) -> void:
-	# If dead, do nothing
 	if is_dead:
-		return 
+		return
 
-	# Only drain if we are outside and have sanity left
 	if is_outside and current_sanity > 0:
 		current_sanity -= drain_rate * delta
-		
-		# Clamp sanity so it doesn't go below 0
 		current_sanity = max(current_sanity, 0)
-		
-		# Update UI
-		if sanity_bar != null:
-			# Ensure the bar reflects the value immediately
-			sanity_bar.value = current_sanity
-			
-		check_sanity_state()
+	elif not is_outside and current_sanity < max_sanity:
+		current_sanity += restore_rate * delta
+		current_sanity = min(current_sanity, max_sanity)
+
+	if sanity_bar != null:
+		sanity_bar.value = current_sanity
+
+	check_sanity_state()
 
 # --- Sanity Thresholds & Death ---
 func check_sanity_state() -> void:
@@ -122,10 +121,16 @@ func _on_climbzone_body_exited(body: Node2D) -> void:
 	if body == self:
 		is_on_ladder = false
 		
+		
 func _on_bunker_zone_body_entered(body: Node2D) -> void:
 	if body == self:
-		is_outside = false  # Stop sanity drain
+		is_outside = false
+		# Check win condition
+		if game_manager.all_collected:
+			print("You win!")
+			await get_tree().create_timer(1.5).timeout
+			get_tree().change_scene_to_file("res://Scenes/win_screen.tscn")
 
 func _on_bunker_zone_body_exited(body: Node2D) -> void:
 	if body == self:
-		is_outside = true  # Resume sanity drain
+		is_outside = true

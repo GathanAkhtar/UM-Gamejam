@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://2b5xbljinbb2"]
+
+[ext_resource type="Script" uid="uid://bkm78gc0j1yn2" path="res://Scripts/win_screen.gd" id="1_awi1s"]
+[ext_resource type="FontFile" uid="uid://0nifiufoq86t" path="res://Assets/Fonts/PixelOperator8-Bold.ttf" id="2_bwc64"]
+[ext_resource type="FontFile" uid="uid://2ktvvkd1bg2c" path="res://Assets/Fonts/PixelOperator8.ttf" id="3_85imr"]
+
+[node name="WinScreen" type="Control" unique_id=1300429249]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_awi1s")
+
+[node name="WinLabel" type="Label" parent="." unique_id=1663974017]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 200.0
+offset_right = 738.0
+offset_bottom = 223.0
+theme_override_fonts/font = ExtResource("2_bwc64")
+text = "You Made It Back Safely!"
+horizontal_alignment = 1
+
+[node name="PlayAgainButton" type="Button" parent="." unique_id=2133137972]
+layout_mode = 0
+offset_left = 490.0
+offset_top = 260.0
+offset_right = 634.0
+offset_bottom = 284.0
+theme_override_fonts/font = ExtResource("3_85imr")
+text = "Play Again!"
+
+[connection signal="pressed" from="PlayAgainButton" to="." method="_on_play_again_button_pressed"]
