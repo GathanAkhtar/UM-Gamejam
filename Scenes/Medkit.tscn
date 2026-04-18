@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://cijpit8wrwjw8"]
+[gd_scene format=3 uid="uid://buvyhxe1xk4iw"]
 
 [ext_resource type="Script" uid="uid://t740ir6anqs0" path="res://Scripts/soda_can.gd" id="1_1kfui"]
 [ext_resource type="Texture2D" uid="uid://uevnccpnossd" path="res://Assets/Sprites/FreePixelSurvivalItemsPack.png" id="2_ih8jt"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_v3lcd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kfui"]
 atlas = ExtResource("2_ih8jt")
 region = Rect2(256, 288, 32, 32)
 
@@ -11,23 +11,23 @@ region = Rect2(256, 288, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_v3lcd")
+"texture": SubResource("AtlasTexture_1kfui")
 }],
 "loop": true,
-"name": &"MedKit",
+"name": &"Medkit",
 "speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qq7k1"]
 radius = 9.0
 
-[node name="Soda Can" type="Area2D" unique_id=757146294]
+[node name="Fuel" type="Area2D" unique_id=757146294]
 collision_mask = 2
 script = ExtResource("1_1kfui")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2104312369]
 sprite_frames = SubResource("SpriteFrames_likb6")
-animation = &"MedKit"
+animation = &"Medkit"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=637397455]
 shape = SubResource("CircleShape2D_qq7k1")

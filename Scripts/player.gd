@@ -1,76 +1,64 @@
 extends CharacterBody2D
 
-# --- Sanity Variables ---
+# --- Variables ---
 var max_sanity = 100.0
 var current_sanity = 100.0
-var drain_rate = 0.83 # How much sanity is lost per second
-var is_outside = true # We will use this to stop the drain when inside
+var drain_rate = 2.0
+var is_outside = true
+var is_dead = false
+var is_on_ladder = false 
 
 @export var sanity_bar: TextureProgressBar
-var sanity_prefix = "" # This will hold "Tier 1 Insanity ", etc.
-var is_dead = false    # We use this to stop the player from moving when they die
+var sanity_prefix = "" 
 
 const SPEED = 150
 const JUMP_VELOCITY = -350.0
 
 @onready var anim = $AnimatedSprite2D
-
-# We use this to remember which way we were looking when we stop
 var last_direction = "Right"
-
 
 # --- Sanity Drain Loop ---
 func _process(delta: float) -> void:
-	# If we are dead, stop draining sanity and ignore this code
+	# If dead, do nothing
 	if is_dead:
 		return 
 
+	# Only drain if we are outside and have sanity left
 	if is_outside and current_sanity > 0:
 		current_sanity -= drain_rate * delta
 		
-		# Update the UI bar safely (checks if you actually dragged the bar into the slot)
+		# Clamp sanity so it doesn't go below 0
+		current_sanity = max(current_sanity, 0)
+		
+		# Update UI
 		if sanity_bar != null:
+			# Ensure the bar reflects the value immediately
 			sanity_bar.value = current_sanity
 			
 		check_sanity_state()
 
-
-# --- Sanity Thresholds ---
+# --- Sanity Thresholds & Death ---
 func check_sanity_state() -> void:
-	# 1. Death State
+	# 1. Death Logic
 	if current_sanity <= 0:
-		current_sanity = 0
 		is_dead = true
 		anim.play("Death From Insanity")
-		
-		# --- NEW RESTART CODE ---
-		# Wait 1.5 seconds so the death animation actually plays
 		await get_tree().create_timer(1.5).timeout
-		
-		# Restart the current level
 		get_tree().reload_current_scene()
-		# ------------------------
-		
-		return # Stops reading the rest of the function
+		return
 
-	# 2. Tier 2 Insanity (20% or less)
-	elif current_sanity <= 20:
+	# 2. Insanity Tiers (Prefixes)
+	if current_sanity <= 20:
 		sanity_prefix = "Tier 2 Insanity "
-
-	# 3. Tier 1 Insanity (50% or less)
 	elif current_sanity <= 50:
 		sanity_prefix = "Tier 1 Insanity "
-
-	# 4. Normal State (Above 50%)
 	else:
 		sanity_prefix = ""
 
-
 # --- Movement & Physics ---
 func _physics_process(delta: float) -> void:
-	# Immediately stop all movement and input if the player is dead
 	if is_dead:
-		# Apply gravity so a dying player still falls to the floor
+		# Apply gravity while dying
 		if not is_on_floor():
 			velocity += get_gravity() * delta
 		else:
@@ -78,47 +66,58 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+	# --- Gravity & Ladder ---
+	if is_on_ladder:
+		velocity.y = 0 # Disable gravity
+		if Input.is_action_pressed("ui_up"):
+			velocity.y = -SPEED
+		elif Input.is_action_pressed("ui_down"):
+			velocity.y = SPEED
+	else:
+		if not is_on_floor():
+			velocity += get_gravity() * delta
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	# --- Jumping ---
+	if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or is_on_ladder):
 		velocity.y = JUMP_VELOCITY
+		# If jumping off a ladder, kick player out of ladder state
+		if is_on_ladder:
+			is_on_ladder = false
 
-	# Get the input direction: -1, 0, or 1
+	# --- Horizontal Movement ---
 	var direction := Input.get_axis("ui_left", "ui_right")
-	
 	if direction:
 		velocity.x = direction * SPEED
-		# Update our tracker whenever there is movement input
-		if direction > 0:
-			last_direction = "Right"
-		else:
-			last_direction = "Left"
+		last_direction = "Right" if direction > 0 else "Left"
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	# --- Animation Logic ---
-	if is_on_floor():
+	if is_on_ladder and not is_on_floor():
+		if velocity.y != 0:
+			anim.play(sanity_prefix + "Climbing")
+		else:
+			anim.pause() 
+	elif is_on_floor():
 		if velocity.x > 0:
-			# Glues the prefix to the action: e.g., "Tier 1 Insanity Run Right"
 			anim.play(sanity_prefix + "Run Right")
 		elif velocity.x < 0:
 			anim.play(sanity_prefix + "Run Left")
 		else:
-			# If stopped, play the Idle animation for the last direction moved
 			anim.play(sanity_prefix + "Idle " + last_direction)
 	else:
-		# Optional: Add a jump animation here if you have one!
-		pass
+		# Basic air logic to prevent stuck animations
+		if velocity.x > 0: last_direction = "Right"
+		elif velocity.x < 0: last_direction = "Left"
 
 	move_and_slide()
 
-
+# --- Signal Connections ---
+# Make sure your Climbzone signals are connected to these!
 func _on_climbzone_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
-
+	if body == self:
+		is_on_ladder = true
 
 func _on_climbzone_body_exited(body: Node2D) -> void:
-	pass # Replace with function body.
+	if body == self:
+		is_on_ladder = false
