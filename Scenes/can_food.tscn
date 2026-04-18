@@ -1,17 +1,17 @@
-[gd_scene format=3 uid="uid://cvnnkyrtada0b"]
+[gd_scene format=3 uid="uid://3n07h5ydh1dh"]
 
-[ext_resource type="Script" uid="uid://cyo0hvp4pwxq7" path="res://can_food.gd" id="1_ewbcv"]
-[ext_resource type="Texture2D" uid="uid://uevnccpnossd" path="res://Assets/Sprites/FreePixelSurvivalItemsPack.png" id="2_7i84d"]
+[ext_resource type="Script" uid="uid://cyo0hvp4pwxq7" path="res://can_food.gd" id="1_ub2j7"]
+[ext_resource type="Texture2D" uid="uid://uevnccpnossd" path="res://Assets/Sprites/FreePixelSurvivalItemsPack.png" id="2_j3w11"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ewbcv"]
-atlas = ExtResource("2_7i84d")
-region = Rect2(224, 64, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_srgd1"]
+atlas = ExtResource("2_j3w11")
+region = Rect2(160, 288, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ki6qw"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ewbcv")
+"texture": SubResource("AtlasTexture_srgd1")
 }],
 "loop": true,
 "name": &"Can Food",
@@ -19,10 +19,11 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5bmmp"]
+radius = 7.0
 height = 24.0
 
 [node name="Can Food" type="Area2D" unique_id=179562540]
-script = ExtResource("1_ewbcv")
+script = ExtResource("1_ub2j7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1302862591]
 sprite_frames = SubResource("SpriteFrames_ki6qw")

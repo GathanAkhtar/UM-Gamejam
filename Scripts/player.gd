@@ -3,7 +3,7 @@ extends CharacterBody2D
 # --- Variables ---
 var max_sanity = 100.0
 var current_sanity = 100.0
-var drain_rate = 2.0
+var drain_rate = 5.0
 var is_outside = true
 var is_dead = false
 var is_on_ladder = false 
@@ -43,7 +43,7 @@ func check_sanity_state() -> void:
 	if current_sanity <= 0:
 		is_dead = true
 		anim.play("Death From Insanity")
-		await get_tree().create_timer(1.5).timeout
+		await get_tree().create_timer(2.0).timeout
 		get_tree().reload_current_scene()
 		return
 
@@ -121,3 +121,11 @@ func _on_climbzone_body_entered(body: Node2D) -> void:
 func _on_climbzone_body_exited(body: Node2D) -> void:
 	if body == self:
 		is_on_ladder = false
+		
+func _on_bunker_zone_body_entered(body: Node2D) -> void:
+	if body == self:
+		is_outside = false  # Stop sanity drain
+
+func _on_bunker_zone_body_exited(body: Node2D) -> void:
+	if body == self:
+		is_outside = true  # Resume sanity drain

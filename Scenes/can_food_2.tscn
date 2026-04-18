@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://chygiwrpeg711"]
+
+[ext_resource type="Script" uid="uid://cyo0hvp4pwxq7" path="res://can_food.gd" id="1_y8u21"]
+[ext_resource type="Texture2D" uid="uid://uevnccpnossd" path="res://Assets/Sprites/FreePixelSurvivalItemsPack.png" id="2_qrwxw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8u21"]
+atlas = ExtResource("2_qrwxw")
+region = Rect2(96, 288, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ki6qw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y8u21")
+}],
+"loop": true,
+"name": &"Can Food 2",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5bmmp"]
+radius = 7.0
+height = 24.0
+
+[node name="Can Food 2" type="Area2D" unique_id=179562540]
+script = ExtResource("1_y8u21")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1302862591]
+sprite_frames = SubResource("SpriteFrames_ki6qw")
+animation = &"Can Food 2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=48170027]
+shape = SubResource("CapsuleShape2D_5bmmp")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
